@@ -1,0 +1,97 @@
+@import "tailwindcss";
+
+@theme {
+  --color-zemin-purple: #9B04DA;
+  --color-zemin-orange: #F99400;
+  --color-zemin-turquoise: #00B4D8;
+  --color-zemin-blue: #6451E7;
+  --color-zemin-dark: #1F2937;
+  --color-zemin-light: #F9FAFB;
+
+  --font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+body {
+  font-family: var(--font-sans);
+}
+
+/* ─── Zemin Editöryal Tasarım Sistemi ─── */
+
+.z-section {
+  @apply py-20 md:py-28 px-6;
+}
+
+.z-container {
+  @apply container mx-auto max-w-6xl;
+}
+
+.z-label {
+  @apply text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500;
+}
+
+.z-panel {
+  @apply bg-white border border-gray-200 p-6 md:p-8;
+}
+
+.z-panel-title {
+  @apply text-xl md:text-2xl font-extrabold tracking-tight;
+}
+
+.z-divider {
+  @apply border-t border-gray-200;
+}
+
+.z-form-label {
+  @apply block text-xs font-bold uppercase tracking-wider text-gray-500 mb-2;
+}
+
+.z-input {
+  @apply w-full px-0 py-3 border-0 border-b-2 border-gray-200 bg-transparent
+         focus:outline-none focus:ring-0 focus:border-zemin-dark transition-colors
+         placeholder:text-gray-400 text-zemin-dark;
+}
+
+.z-link-arrow {
+  @apply inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider
+         transition-colors group-hover:gap-3;
+}
+
+.z-directory-row {
+  @apply flex items-center gap-5 md:gap-8 py-5 border-b border-gray-200
+         transition-colors hover:bg-zemin-light/80 px-4 -mx-4;
+}
+
+.z-step-num {
+  @apply text-xs font-bold tabular-nums text-gray-400 w-6 shrink-0;
+}
+
+/* Aşağı kaydırma için ardışık çizilip kaybolan oklar */
+@keyframes scrollChevron {
+  0% {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  40% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+.scroll-chevron {
+  animation: scrollChevron 1.6s ease-in-out infinite;
+}
+
+/* Hareket hassasiyeti: animasyon/geçişleri sönümle */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
