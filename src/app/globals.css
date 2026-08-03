@@ -84,6 +84,75 @@ body {
   animation: scrollChevron 1.6s ease-in-out infinite;
 }
 
+/* Parçacık efekti: markanın üç renginde, yavaşça süzülen noktalar.
+   Konum/süre/gecikme her parçacığa CSS değişkeniyle geçirilir. */
+@keyframes particleDrift {
+  0% {
+    transform: translate3d(0, 0, 0) scale(0.75);
+    opacity: 0;
+  }
+  15% {
+    opacity: var(--p-opacity);
+  }
+  85% {
+    opacity: var(--p-opacity);
+  }
+  100% {
+    transform: translate3d(var(--p-dx), var(--p-dy), 0) scale(1.3);
+    opacity: 0;
+  }
+}
+
+.z-particle {
+  position: absolute;
+  border-radius: 9999px;
+  animation: particleDrift var(--p-dur) ease-in-out var(--p-delay) infinite;
+  will-change: transform, opacity;
+}
+
+/* Nokta deseninin çok yavaş kayması */
+@keyframes dotPan {
+  to {
+    background-position: 28px -28px;
+  }
+}
+
+.z-dots-anim {
+  animation: dotPan 26s linear infinite;
+}
+
+/* Başvuru sticker'ı: yavaş dönen kesikli halka + dikkat çeken nabız */
+@keyframes badgeSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.z-badge-ring {
+  animation: badgeSpin 16s linear infinite;
+}
+
+@keyframes badgePulse {
+  0% {
+    box-shadow: 0 0 0 0 rgb(249 148 0 / 0.55);
+  }
+  70% {
+    box-shadow: 0 0 0 20px rgb(249 148 0 / 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgb(249 148 0 / 0);
+  }
+}
+
+.z-badge-pulse {
+  animation: badgePulse 2.8s ease-out infinite;
+}
+
+/* Sayfa içi çapa bağlantılarında yumuşak kaydırma */
+html {
+  scroll-behavior: smooth;
+}
+
 /* Hareket hassasiyeti: animasyon/geçişleri sönümle */
 @media (prefers-reduced-motion: reduce) {
   *,

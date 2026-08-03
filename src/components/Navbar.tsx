@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { HACKATHON_APPLICATION_URL } from '../lib/links';
+import BasvurLink from './BasvurLink';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,12 +30,12 @@ export default function Navbar() {
 
         {/* Masaüstü Başvur Butonları & Mobil Hamburger İkonu */}
         <div className="flex items-center gap-3">
-          <Link href="/hackathon" className="hidden lg:inline-block bg-zemin-orange text-white px-4 py-2 font-bold text-xs uppercase tracking-wider hover:bg-zemin-purple transition-colors shadow-md">
+          <a href={HACKATHON_APPLICATION_URL} target="_blank" rel="noopener noreferrer" className="hidden lg:inline-block bg-zemin-orange text-white px-4 py-2 font-bold text-xs uppercase tracking-wider hover:bg-zemin-purple transition-colors shadow-md">
             Hackathon Başvur
-          </Link>
-          <Link href="/#basvur" className="hidden lg:inline-block border border-zemin-purple text-zemin-purple px-4 py-2 font-bold text-xs uppercase tracking-wider hover:bg-zemin-purple hover:text-white transition-colors">
-            Program Başvur
-          </Link>
+          </a>
+          <BasvurLink className="hidden lg:inline-block border border-zemin-purple text-zemin-purple px-4 py-2 font-bold text-xs uppercase tracking-wider hover:bg-zemin-purple hover:text-white transition-colors">
+            Programa Başvur
+          </BasvurLink>
           
           {/* Mobil Menü Aç/Kapat Butonu (Sadece telefonda görünür) */}
           <button 
@@ -60,12 +62,12 @@ export default function Navbar() {
           <Link href="/kurumlar-girisimler" onClick={() => setIsOpen(false)} className="font-bold text-zemin-dark hover:text-zemin-purple block py-2">Kurumlar & Girişimler</Link>
           <Link href="/iletisim" onClick={() => setIsOpen(false)} className="font-bold text-zemin-dark hover:text-zemin-purple block py-2">İletişim</Link>
           
-          <Link href="/hackathon" onClick={() => setIsOpen(false)} className="bg-zemin-orange text-white text-center px-5 py-3 font-bold text-sm uppercase tracking-wider mt-2 shadow-md">
+          <a href={HACKATHON_APPLICATION_URL} target="_blank" rel="noopener noreferrer" onClick={() => setIsOpen(false)} className="bg-zemin-orange text-white text-center px-5 py-3 font-bold text-sm uppercase tracking-wider mt-2 shadow-md">
             Hackathon Başvur
-          </Link>
-          <Link href="/#basvur" onClick={() => setIsOpen(false)} className="border border-zemin-purple text-zemin-purple text-center px-5 py-3 font-bold text-sm uppercase tracking-wider shadow-sm">
-            Program Başvur
-          </Link>
+          </a>
+          <BasvurLink onNavigate={() => setIsOpen(false)} className="border border-zemin-purple text-zemin-purple text-center px-5 py-3 font-bold text-sm uppercase tracking-wider shadow-sm">
+            Programa Başvur
+          </BasvurLink>
         </div>
       )}
     </header>

@@ -4,6 +4,7 @@ import PageHero from "../../components/ui/PageHero";
 import SectionIntro from "../../components/ui/SectionIntro";
 import DirectoryList from "../../components/ui/DirectoryList";
 import BenefitColumns from "../../components/ui/BenefitColumns";
+import { GIRISIM_APPLICATION_URL, KURUM_APPLICATION_URL } from "../../lib/links";
 
 export const metadata: Metadata = {
   title: "Kurumlar & Girişimler",
@@ -57,7 +58,7 @@ export default function KurumlarGirisimler() {
               <DirectoryList
                 items={girisimler}
                 accent="turquoise"
-                emptyHref="/girisim-basvurusu"
+                emptyHref={GIRISIM_APPLICATION_URL}
                 emptyLabel="Girişim olarak başvur"
                 fallbackIcon="/icons/icon_pacman.png"
               />
@@ -73,7 +74,7 @@ export default function KurumlarGirisimler() {
               <DirectoryList
                 items={kurumlar}
                 accent="orange"
-                emptyHref="/kurum-basvurusu"
+                emptyHref={KURUM_APPLICATION_URL}
                 emptyLabel="Kurum olarak başvur"
                 fallbackIcon="/icons/icon_m.png"
               />

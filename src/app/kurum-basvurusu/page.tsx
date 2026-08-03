@@ -1,23 +1,25 @@
-import type { Metadata } from "next";
-import KurumForm from "./KurumForm";
+'use client';
 
-export const metadata: Metadata = {
-  title: "Kurum Başvurusu",
-  description: "Zemin360 programına kurumsal şirket olarak başvurun. Startuplarla güçlü iş birlikleri kurun.",
-  alternates: { canonical: "/kurum-basvurusu" },
-  openGraph: {
-    title: "Kurum Başvurusu | Zemin360",
-    description: "Zemin360 programına kurumsal şirket olarak başvurun. Startuplarla güçlü iş birlikleri kurun.",
-    url: "https://zemin360.com/kurum-basvurusu",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Zemin360" }],
-  },
-  twitter: {
-    title: "Kurum Başvurusu | Zemin360",
-    description: "Zemin360 programına kurumsal şirket olarak başvurun. Startuplarla güçlü iş birlikleri kurun.",
-    images: ["/og-image.png"],
-  },
-};
+import { useEffect } from 'react';
+import { KURUM_APPLICATION_URL } from '../../lib/links';
 
+// Kurum başvuruları artık Airtable formu üzerinden alınıyor.
+// Statik dışa aktarımda sunucu tarafı yönlendirme yapılamadığı için istemci
+// tarafında yönlendiriyor; JS çalışmazsa görünen bağlantı devrede kalır.
 export default function KurumBasvurusuPage() {
-  return <KurumForm />;
+  useEffect(() => {
+    window.location.replace(KURUM_APPLICATION_URL);
+  }, []);
+
+  return (
+    <div className="flex flex-col items-center justify-center min-h-[40vh] px-6 text-center gap-3">
+      <p className="text-gray-500">Kurum başvuru formuna yönlendiriliyorsunuz…</p>
+      <a
+        href={KURUM_APPLICATION_URL}
+        className="text-sm font-bold uppercase tracking-wider text-zemin-orange hover:text-zemin-purple transition-colors"
+      >
+        Form açılmadıysa tıklayın →
+      </a>
+    </div>
+  );
 }

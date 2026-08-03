@@ -1,49 +1,59 @@
-import Link from "next/link";
+import HackathonStrip from "./HackathonStrip";
+import HeroActions from "./HeroActions";
+import ParticleField from "./ParticleField";
 
+/**
+ * Ana sayfa açılış kompozisyonu — tek ızgara, dört kutu:
+ *   banner (iki satır) · başlık kutusu (mor) · eylem kutusu (turuncu)
+ *   alt satırda hackathon kutusu (turkuaz, iki kolon)
+ * Markanın üç rengi böylece kompozisyonun üç ayrı kutusuna dağılıyor.
+ */
 export default function HomeHero() {
   return (
-    <section className="min-h-[70vh] md:min-h-[75vh] grid md:grid-cols-[minmax(128px,16%)_1fr] gap-4 md:gap-6 p-4 md:p-6">
-      <div className="hidden md:block bg-white rounded-3xl overflow-hidden">
+    <section className="p-4 md:p-6 md:min-h-[80vh] grid gap-4 md:gap-6 md:grid-cols-[minmax(130px,15%)_1fr_minmax(230px,23%)] md:grid-rows-[1fr_auto]">
+      {/* Banner 700x2150 (oran ~0.33). Kolon genişliği bu orana yakın tutulur ki
+          object-cover kırpması en aza insin; kalan kırpma object-center ile
+          iki yana eşit dağılır — object-left tek taraftan kesip kaydırıyordu. */}
+      <div className="hidden md:block md:row-span-2 bg-white rounded-3xl overflow-hidden">
         <img
           src="/icons/banner_dikey4.webp"
           alt=""
-          className="h-full w-full object-cover object-left"
+          className="h-full w-full object-cover object-center"
         />
       </div>
 
-      <div className="relative bg-zemin-blue rounded-3xl overflow-hidden flex flex-col justify-center px-6 md:px-12 lg:px-16 py-16 md:py-20">
+      {/* Başlık kutusu — mor tonlar */}
+      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-zemin-blue via-zemin-blue to-zemin-purple flex flex-col justify-center px-6 md:px-12 lg:px-14 py-14 md:py-16">
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 opacity-[0.07]"
+          className="z-dots-anim pointer-events-none absolute inset-0 opacity-[0.07]"
           style={{
             backgroundImage:
               "radial-gradient(circle at center, #fff 0, #fff 2px, transparent 2.5px)",
             backgroundSize: "28px 28px",
           }}
         />
-        <h1 className="relative text-3xl md:text-5xl font-extrabold text-white leading-tight tracking-tight max-w-3xl mb-6">
+        <ParticleField />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -bottom-40 -left-24 w-[380px] h-[380px] rounded-full bg-zemin-turquoise/20 blur-3xl"
+        />
+
+        <h1 className="relative text-3xl md:text-5xl font-extrabold text-white leading-tight tracking-tight max-w-2xl mb-6">
           Kurumsal Şirketler ve Startuplar İçin Yeni Nesil İş Birliği Zemini
         </h1>
-
-        <p className="relative text-base md:text-lg text-purple-200 font-light leading-relaxed max-w-2xl mb-10">
+        <p className="relative text-base md:text-lg text-purple-200 font-light leading-relaxed max-w-xl">
           İstanbul&apos;un inovasyon potansiyelini harekete geçiriyoruz. Startupların çevikliğini kurumsal
           şirketlerin gücüyle birleştirerek sürdürülebilir ve ölçülebilir başarı hikayeleri yaratıyoruz.
         </p>
+      </div>
 
-        <div className="relative flex flex-col sm:flex-row gap-4 sm:gap-6">
-          <Link
-            href="/#basvur"
-            className="inline-block bg-zemin-orange text-white px-8 py-3.5 font-bold text-sm uppercase tracking-wider hover:bg-white hover:text-zemin-blue transition-colors text-center"
-          >
-            Programa Başvur
-          </Link>
-          <Link
-            href="/program"
-            className="inline-block border border-white/40 text-white px-8 py-3.5 font-bold text-sm uppercase tracking-wider hover:bg-white/10 transition-colors text-center"
-          >
-            Program Akışı
-          </Link>
-        </div>
+      {/* Eylem kutusu — turuncu tonlar */}
+      <HeroActions />
+
+      {/* Hackathon kutusu — turkuaz, alt satırın tamamı */}
+      <div className="md:col-span-2">
+        <HackathonStrip />
       </div>
     </section>
   );

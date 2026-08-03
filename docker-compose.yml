@@ -1,0 +1,9 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: zemin360:latest
+    ports:
+      - "8080:8080"
+    restart: unless-stopped

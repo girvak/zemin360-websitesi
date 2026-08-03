@@ -19,7 +19,7 @@ export default function IletisimForm() {
 
     const body = [
       `Ad Soyad: ${formData.ad}`,
-      `E-Posta: ${formData.email}`,
+      `E-posta: ${formData.email}`,
       formData.kurum ? `Kurum / Girişim: ${formData.kurum}` : null,
       '',
       'Mesaj:',
@@ -46,7 +46,7 @@ export default function IletisimForm() {
       ),
     },
     {
-      label: "E-Posta",
+      label: "E-posta",
       accent: "text-zemin-orange",
       content: (
         <a href={`mailto:${CONTACT_EMAIL}`} className="hover:text-zemin-orange transition-colors">
@@ -91,7 +91,7 @@ export default function IletisimForm() {
                 </FormField>
 
                 <div className="grid sm:grid-cols-2 gap-8">
-                  <FormField label="E-Posta" htmlFor="email" required>
+                  <FormField label="E-posta" htmlFor="email" required>
                     <FormInput required type="email" id="email" value={formData.email} onChange={handleChange} placeholder="ornek@sirket.com" />
                   </FormField>
                   <FormField label="Kurum / Girişim" htmlFor="kurum">

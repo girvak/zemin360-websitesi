@@ -1,23 +1,25 @@
-import type { Metadata } from "next";
-import GirisimForm from "./GirisimForm";
+'use client';
 
-export const metadata: Metadata = {
-  title: "Girişim Başvurusu",
-  description: "Zemin360 programına girişim olarak başvurun. Çözümünüzü kurumsal şirketlerin gücüyle buluşturun.",
-  alternates: { canonical: "/girisim-basvurusu" },
-  openGraph: {
-    title: "Girişim Başvurusu | Zemin360",
-    description: "Zemin360 programına girişim olarak başvurun. Çözümünüzü kurumsal şirketlerin gücüyle buluşturun.",
-    url: "https://zemin360.com/girisim-basvurusu",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Zemin360" }],
-  },
-  twitter: {
-    title: "Girişim Başvurusu | Zemin360",
-    description: "Zemin360 programına girişim olarak başvurun. Çözümünüzü kurumsal şirketlerin gücüyle buluşturun.",
-    images: ["/og-image.png"],
-  },
-};
+import { useEffect } from 'react';
+import { GIRISIM_APPLICATION_URL } from '../../lib/links';
 
+// Girişim başvuruları artık Airtable formu üzerinden alınıyor.
+// Statik dışa aktarımda sunucu tarafı yönlendirme yapılamadığı için istemci
+// tarafında yönlendiriyor; JS çalışmazsa görünen bağlantı devrede kalır.
 export default function GirisimBasvurusuPage() {
-  return <GirisimForm />;
+  useEffect(() => {
+    window.location.replace(GIRISIM_APPLICATION_URL);
+  }, []);
+
+  return (
+    <div className="flex flex-col items-center justify-center min-h-[40vh] px-6 text-center gap-3">
+      <p className="text-gray-500">Girişim başvuru formuna yönlendiriliyorsunuz…</p>
+      <a
+        href={GIRISIM_APPLICATION_URL}
+        className="text-sm font-bold uppercase tracking-wider text-zemin-turquoise hover:text-zemin-purple transition-colors"
+      >
+        Form açılmadıysa tıklayın →
+      </a>
+    </div>
+  );
 }

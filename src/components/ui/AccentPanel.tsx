@@ -1,16 +1,12 @@
 import type { ReactNode } from "react";
 
-type Accent = "purple" | "orange" | "turquoise" | "blue";
-
 interface AccentPanelProps {
-  accent?: Accent;
   children: ReactNode;
   className?: string;
   variant?: "default" | "muted";
 }
 
 export default function AccentPanel({
-  accent: _accent = "purple",
   children,
   className = "",
   variant = "default",

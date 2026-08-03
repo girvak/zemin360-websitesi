@@ -4,6 +4,7 @@ import Link from "next/link";
 import Navbar from "../components/Navbar";
 import JsonLd from "../components/JsonLd";
 import Analytics from "../components/Analytics";
+import { GIRISIM_APPLICATION_URL, KURUM_APPLICATION_URL } from "../lib/links";
 
 const SITE_URL = "https://zemin360.com";
 const SITE_DESCRIPTION =
@@ -136,7 +137,7 @@ export default function RootLayout({
         <footer className="bg-zemin-dark text-white">
 
           {/* CTA Bölümü */}
-          <div id="basvur" className="border-b border-white/10 py-16 px-6">
+          <div id="basvur" className="border-b border-white/10 py-16 px-6 scroll-mt-20">
             <div className="container mx-auto max-w-6xl">
               <div className="grid md:grid-cols-12 gap-8 items-center">
                 <div className="md:col-span-7">
@@ -147,12 +148,12 @@ export default function RootLayout({
                   </p>
                 </div>
                 <div className="md:col-span-5 flex flex-col sm:flex-row md:flex-col lg:flex-row gap-3 md:justify-end">
-                  <Link href="/girisim-basvurusu" className="border border-zemin-turquoise text-zemin-turquoise px-7 py-3 font-bold text-sm uppercase tracking-wider hover:bg-zemin-turquoise hover:text-white transition-colors text-center">
+                  <a href={GIRISIM_APPLICATION_URL} target="_blank" rel="noopener noreferrer" className="border border-zemin-turquoise text-zemin-turquoise px-7 py-3 font-bold text-sm uppercase tracking-wider hover:bg-zemin-turquoise hover:text-white transition-colors text-center">
                     Girişim Başvurusu
-                  </Link>
-                  <Link href="/kurum-basvurusu" className="border border-zemin-orange text-zemin-orange px-7 py-3 font-bold text-sm uppercase tracking-wider hover:bg-zemin-orange hover:text-white transition-colors text-center">
+                  </a>
+                  <a href={KURUM_APPLICATION_URL} target="_blank" rel="noopener noreferrer" className="border border-zemin-orange text-zemin-orange px-7 py-3 font-bold text-sm uppercase tracking-wider hover:bg-zemin-orange hover:text-white transition-colors text-center">
                     Kurum Başvurusu
-                  </Link>
+                  </a>
                 </div>
               </div>
             </div>

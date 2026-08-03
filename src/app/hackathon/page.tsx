@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import SectionIntro from "../../components/ui/SectionIntro";
 import AccentPanel from "../../components/ui/AccentPanel";
 import HackathonCountdown from "../../components/HackathonCountdown";
 import JsonLd from "../../components/JsonLd";
+import { HACKATHON_APPLICATION_URL } from "../../lib/links";
+import { HACKATHON_DEADLINE } from "../../lib/hackathon";
 
 export const metadata: Metadata = {
   title: "Hackathon",
   description:
-    "Zemin360 Hackathon — 9–11 Ekim 2026, İstanbul. Gençlerin ve kurumların buluştuğu, sektörün gerçek problemlerine çözüm üreten açık kaynak platformun inşa edildiği etkinlik. Başvurular 24 Temmuz 2026'da açılıyor.",
+    "Zemin360 Hackathon — 9–11 Ekim 2026, İstanbul. Gençlerin ve kurumların buluştuğu, sektörün gerçek problemlerine çözüm üreten açık kaynak platformun inşa edildiği etkinlik. Başvurular 7 Eylül 2026'ya kadar açık.",
   alternates: { canonical: "/hackathon" },
   keywords: [
     "Zemin360 Hackathon",
@@ -61,16 +62,15 @@ const eventJsonLd = {
     price: "0",
     priceCurrency: "TRY",
     availability: "https://schema.org/InStock",
-    validFrom: "2026-07-24",
-    url: "https://zemin360.com/hackathon",
+    validFrom: "2026-08-03",
+    validThrough: "2026-09-07",
+    url: HACKATHON_APPLICATION_URL,
   },
 };
 
-// 24 Temmuz 2026 — başvuruların açılışı (TSİ)
-const APPLICATIONS_OPEN = "2026-07-24T00:00:00+03:00";
+const APPLICATIONS_DEADLINE = HACKATHON_DEADLINE;
 
-// Başvuru bağlantısı — başvuru formu/sayfası hazır olunca güncellenecek
-const APPLICATION_URL = "#";
+const APPLICATION_URL = HACKATHON_APPLICATION_URL;
 
 const problems = [
   {
@@ -99,57 +99,69 @@ const problems = [
   },
 ];
 
-const conditions = [
-  "18–30 yaş aralığında olmak",
-  "Yazılım geliştirme, UI/UX tasarımı veya ürün geliştirme deneyimine sahip olmak",
-  "3–5 kişilik takım halinde başvurmak",
-  "Türkiye'nin her yerinden başvuruya açık",
-  "9–11 Ekim tarihlerinde İstanbul'daki fiziksel hackathona katılabilmek",
+const applicationCriteria = [
+  "Ekipler minimum 1, maksimum 3 kişiden oluşmalıdır.",
+  "18–30 yaş aralığında olmak gerekir.",
+  "Yazılım geliştirme, UI/UX veya ürün geliştirme deneyimi aranır.",
+  "9–11 Ekim'deki yüz yüze hackathona İstanbul'da fiziksel katılım zorunludur.",
 ];
 
-const timeline = [
+type TimelineItem = {
+  date: string;
+  accent: string;
+  title: string;
+  desc: string;
+  phase?: "basvuru" | "program";
+};
+
+const timeline: TimelineItem[] = [
   {
-    date: "24 Temmuz",
+    date: "3 Ağustos – 7 Eylül",
     accent: "border-zemin-orange text-zemin-orange",
-    title: "Başvuruların Açılışı",
-    desc: "Başvuru formu erişime açılıyor, kayıtlar başlıyor.",
+    title: "Başvuru formu",
+    desc: "zemin360.com üzerindeki formu eksiksiz doldurun.",
+    phase: "basvuru",
   },
   {
-    date: "7 Eylül",
+    date: "7 – 14 Eylül",
     accent: "border-zemin-purple text-zemin-purple",
-    title: "Başvuruların Kapanışı",
-    desc: "Son başvuru tarihi; kayıtlar bu tarihte sona eriyor.",
+    title: "Ön Değerlendirme",
+    desc: "Yapılan başvurular değerlendirilir ve etkinliğe katılacak ekipler seçilir.",
+    phase: "basvuru",
   },
   {
-    date: "16 Eylül",
+    date: "15 Eylül",
     accent: "border-zemin-turquoise text-zemin-turquoise",
-    title: "Değerlendirme Süreci",
-    desc: "Başvurular jüri tarafından değerlendirilip sonuçlandırılıyor.",
+    title: "Değerlendirme sonuçları",
+    desc: "Seçilen ekiplere kabul bildirimi gönderilir.",
+    phase: "basvuru",
   },
   {
-    date: "18 Eylül",
+    date: "15 – 18 Eylül",
     accent: "border-zemin-blue text-zemin-blue",
-    title: "Takımların Açıklanması",
-    desc: "Seçilen takımlar duyuruluyor ve online süreç başlıyor.",
+    title: "Online ön hazırlık",
+    desc: "İletişim kanalı açılır; teknik mentörlük ve duyurular paylaşılır.",
+    phase: "program",
   },
   {
-    date: "18 Eylül – 7 Ekim",
+    date: "18 Eylül – 9 Ekim",
     accent: "border-zemin-orange text-zemin-orange",
-    title: "Online Geliştirme Dönemi",
-    desc: "Takımlar 20 gün boyunca fiziksel hackathona hazırlık olarak uzaktan geliştirir.",
+    title: "Online geliştirme dönemi",
+    desc: "Katılımcılar yüz yüze hackathon öncesinde uzaktan geliştirme sürecine başlar.",
+    phase: "program",
   },
   {
-    date: "8 Ekim",
-    accent: "border-zemin-turquoise text-zemin-turquoise",
-    title: "Ulaşım Günü",
-    desc: "Takımların İstanbul'a ulaşımı için ayrılan gün.",
-  },
-  {
-    date: "9–11 Ekim",
+    date: "9 – 11 Ekim",
     accent: "border-zemin-purple text-zemin-purple",
-    title: "Fiziksel Hackathon",
-    desc: "İstanbul'da Cuma–Pazar; Pazar günü takım sunumları ve kazananın açıklanması.",
+    title: "Yüz yüze hackathon",
+    desc: "İstanbul'da üç gün süren fiziksel geliştirme ve sunum süreci.",
+    phase: "program",
   },
+];
+
+const timelinePhases = [
+  { key: "basvuru" as const, label: "Başvuru süreci" },
+  { key: "program" as const, label: "Program süreci" },
 ];
 
 export default function Hackathon() {
@@ -191,7 +203,7 @@ export default function Hackathon() {
                 <p>
                   <strong className="text-white font-semibold">Türkiye Girişimcilik Vakfı (GİRVAK)</strong> ve program
                   paydaşlarının iş birliğiyle düzenlenen; genç yeteneklerle kurumları ortak bir zeminde buluşturan bir
-                  geliştirme etkinliği.
+                  geliştirme maratonu.
                 </p>
                 <p>
                   Katılımcılar üç gün boyunca, sektörün gerçek problemlerine çözüm üreten ve kurumların iş birliğiyle
@@ -203,17 +215,19 @@ export default function Hackathon() {
 
             <div className="w-full">
               <HackathonCountdown
-                target={APPLICATIONS_OPEN}
-                label="Başvuruların açılışına"
-                passedText="Başvurular açıldı!"
+                target={APPLICATIONS_DEADLINE}
+                label="Son başvuruya"
+                passedText="Başvurular kapandı"
                 compact
               />
-              <Link
+              <a
                 href={APPLICATION_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="mt-4 block w-full text-center bg-zemin-orange text-white px-6 py-3.5 font-bold text-sm uppercase tracking-wider hover:bg-white hover:text-zemin-blue transition-colors"
               >
                 Hemen Başvur
-              </Link>
+              </a>
             </div>
           </div>
         </div>
@@ -248,8 +262,8 @@ export default function Hackathon() {
           <SectionIntro
             index="01"
             label="Görev"
-            title="Çözülecek Problemler"
-            description="Ekiplerden, aşağıdaki problemlerden bir veya daha fazlasını tek bir web hizmetinde çözmeleri beklenir. Bunlar kurum-girişim ekosisteminin sektördeki en kritik ihtiyaçlarıdır."
+            title="Üzerinde Çalışacağınız Konular"
+            description="Katılımcılardan, kurum–girişim ekosisteminin öncelikli ihtiyaçlarından bir veya birkaçını tek bir web hizmetinde ele almaları beklenir."
             accent="orange"
           />
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -266,48 +280,64 @@ export default function Hackathon() {
         </div>
       </section>
 
-      {/* KİMLER KATILABİLİR */}
+      {/* BAŞVURU KRİTERLERİ */}
       <section className="z-section bg-white z-divider scroll-mt-20">
         <div className="z-container max-w-3xl">
-          <SectionIntro index="02" label="Uygunluk" title="Kimler Katılabilir?" accent="blue" />
+          <SectionIntro
+            index="02"
+            label="Başvuru"
+            title="Başvuru Kriterleri"
+            description="Başvuru yapmadan önce aşağıdaki koşulları kontrol edin."
+            accent="blue"
+          />
           <ul className="space-y-5">
-            {conditions.map((c, i) => (
-              <li key={i} className="flex gap-5 items-start border-b border-gray-200 pb-5">
-                <span className="text-sm font-extrabold tabular-nums text-zemin-blue shrink-0 pt-1">
+            {applicationCriteria.map((c, i) => (
+              <li key={i} className="flex gap-5 items-start border-b border-gray-200 pb-5 last:border-b-0 last:pb-0">
+                <span className="text-sm font-extrabold tabular-nums text-zemin-blue shrink-0 pt-0.5">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <span className="text-zemin-dark leading-relaxed text-lg">{c}</span>
+                <span className="text-zemin-dark leading-relaxed">{c}</span>
               </li>
             ))}
           </ul>
         </div>
       </section>
 
-      {/* TAKVİM */}
+      {/* BAŞVURU TAKVİMİ */}
       <section className="z-section bg-zemin-light z-divider scroll-mt-20">
         <div className="z-container">
           <SectionIntro
             index="03"
             label="Takvim"
-            title="Süreç Takvimi"
-            description="Başvurudan fiziksel hackathona kadar tüm önemli tarihler."
+            title="Başvuru ve Program Takvimi"
+            description="Başvurudan yüz yüze hackathona kadar önemli tarihler."
             accent="purple"
           />
-          <div className="relative max-w-3xl">
-            {/* sürekli dikey çizgi */}
-            <div className="absolute left-[7px] top-2 bottom-2 w-0.5 bg-gray-200" aria-hidden />
-            {timeline.map((t) => (
-              <div key={t.date} className="relative flex gap-6 pb-10 last:pb-0">
-                <span
-                  className={`relative z-10 mt-1.5 shrink-0 w-4 h-4 rounded-full bg-white border-[3px] ${t.accent.split(" ")[0]}`}
-                  aria-hidden
-                />
-                <div className="flex-1">
-                  <span className={`block text-sm font-extrabold uppercase tracking-wider mb-1 ${t.accent.split(" ")[1]}`}>
-                    {t.date}
-                  </span>
-                  <h3 className="text-lg font-bold text-zemin-dark">{t.title}</h3>
-                  <p className="text-gray-600 leading-relaxed mt-1">{t.desc}</p>
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 max-w-5xl">
+            {timelinePhases.map((phase) => (
+              <div key={phase.key}>
+                <h3 className="z-panel-title text-zemin-dark mb-8 pb-4 border-b border-gray-200">
+                  {phase.label}
+                </h3>
+                <div className="relative">
+                  <div className="absolute left-[7px] top-2 bottom-2 w-0.5 bg-gray-200" aria-hidden />
+                  {timeline
+                    .filter((t) => t.phase === phase.key)
+                    .map((t) => (
+                      <div key={`${t.date}-${t.title}`} className="relative flex gap-6 pb-8 last:pb-0">
+                        <span
+                          className={`relative z-10 mt-1.5 shrink-0 w-4 h-4 rounded-full bg-white border-[3px] ${t.accent.split(" ")[0]}`}
+                          aria-hidden
+                        />
+                        <div className="flex-1 min-w-0">
+                          <span className={`block text-xs font-bold uppercase tracking-wider mb-1 ${t.accent.split(" ")[1]}`}>
+                            {t.date}
+                          </span>
+                          <h4 className="text-base font-bold text-zemin-dark">{t.title}</h4>
+                          <p className="text-gray-600 text-sm leading-relaxed mt-1">{t.desc}</p>
+                        </div>
+                      </div>
+                    ))}
                 </div>
               </div>
             ))}
@@ -324,14 +354,13 @@ export default function Hackathon() {
           <div className="grid md:grid-cols-12 gap-8 md:gap-12 items-center">
             <div className="md:col-span-5">
               <div className="text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-none">200.000 TL</div>
-              <div className="text-purple-200 font-bold uppercase tracking-wider text-sm mt-3">Proje Geliştirme Fonu</div>
+              <div className="text-purple-200 font-bold uppercase tracking-wider text-sm mt-3">Platform Geliştirme Bütçesi</div>
             </div>
             <div className="md:col-span-7 text-base md:text-lg text-purple-100 leading-relaxed">
               <p>
-                200.000 TL'lik destek, fikrinizi gerçek bir ürüne dönüştürmeniz için ayrılan bir{" "}
-                <strong className="text-white">geliştirme fonudur</strong>; sunucu ve altyapı gibi ek maliyetler de{" "}
-                <strong className="text-white">GİRVAK</strong> tarafından karşılanır. Böylece tek odağınız en iyi
-                ürünü inşa etmek olur. Geliştirdiğiniz <strong className="text-white">açık kaynak</strong> platform,
+                200.000 TL bir hibe değil; fikrinizi gerçek bir ürüne dönüştürmeniz için ayrılan{" "}
+                <strong className="text-white">platform geliştirme bütçesidir</strong>. Geliştirdiğiniz{" "}
+                <strong className="text-white">açık kaynak</strong> platform,
                 Türkiye&apos;nin teknolojik dönüşümünde önemli bir adım olacak ve sürecin her aşamasında{" "}
                 <strong className="text-white">sizin imzanızı</strong> taşıyacak.
               </p>
@@ -343,13 +372,36 @@ export default function Hackathon() {
       {/* MENTÖRLER & DESTEK */}
       <section className="z-section bg-white z-divider scroll-mt-20">
         <div className="z-container">
-          <SectionIntro index="04" label="Mentörler" title="Mentörler & Destek" accent="turquoise" />
+          <SectionIntro index="04" label="Destek" title="Mentörler" accent="turquoise" />
           <AccentPanel variant="muted" className="flex flex-col items-center justify-center text-center py-16">
-            <p className="text-2xl font-extrabold text-zemin-dark mb-3">Mentörlerimiz yakında açıklanacak</p>
-            <p className="text-gray-600 max-w-xl mx-auto leading-relaxed">
-              Mentor, jüri ve davetli konuşmacı profilleri kişiler netleştikçe bu bölümde paylaşılacaktır.
+            <p className="text-xl font-extrabold text-zemin-dark mb-3">Mentörler yakında açıklanacak</p>
+            <p className="text-gray-600 max-w-xl mx-auto leading-relaxed text-sm">
+              Mentör, jüri ve konuşmacı profilleri netleştikçe burada paylaşılacak.
             </p>
           </AccentPanel>
+        </div>
+      </section>
+
+      {/* KAPANIŞ MESAJI */}
+      <section className="z-section bg-zemin-light z-divider">
+        <div className="z-container max-w-4xl">
+          <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-zemin-orange mb-6 border-l-2 border-zemin-orange pl-3">
+            Fırsat
+          </p>
+          <p className="text-2xl md:text-4xl font-extrabold text-zemin-dark leading-snug tracking-tight mb-8">
+            Yarışmanın ötesinde, gerçek bir ürünün hayata geçirilme sürecinde yer alma fırsatı.
+          </p>
+          <div className="space-y-4 text-base md:text-lg text-gray-600 leading-relaxed border-l-2 border-gray-200 pl-6">
+            <p>
+              Hackathon sonucunda birinci olan ekip, <strong className="text-zemin-dark">GİRVAK</strong> ile hizmet
+              sözleşmesi imzalayarak geliştirdikleri platformu nihai ürüne taşıyacak{" "}
+              <strong className="text-zemin-dark">4 aylık geliştirme sürecini</strong> üstlenecektir.
+            </p>
+            <p>
+              Ekip, platformun sahaya alınması için <strong className="text-zemin-dark">pilot uygulamayı</strong>{" "}
+              yönetecek ve <strong className="text-zemin-dark">kullanıcı eğitimlerini</strong> gerçekleştirecek.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -358,14 +410,16 @@ export default function Hackathon() {
         <div className="z-container text-center">
           <h2 className="text-2xl md:text-4xl font-extrabold mb-4 tracking-tight">Hackathona Hazır mısın?</h2>
           <p className="text-purple-200 max-w-xl mx-auto leading-relaxed mb-8">
-            Fikrini gerçek bir ürüne dönüştürmek ve geliştirdiğin çözüme imzanı atmak için takımını kur, yerini al.
+            Ekibini kur, başvurunu yap ve seçilen ekipler arasında yerini al; geliştirdiğin çözüme imzanı at.
           </p>
-          <Link
+          <a
             href={APPLICATION_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-block bg-zemin-orange text-white px-8 py-3.5 font-bold text-sm uppercase tracking-wider hover:bg-white hover:text-zemin-blue transition-colors"
           >
             Hemen Başvur
-          </Link>
+          </a>
         </div>
       </section>
     </div>

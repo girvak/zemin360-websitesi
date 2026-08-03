@@ -9,7 +9,8 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: ["/proje-detayi"],
+      // Yalnızca yönlendirme yapan sayfalar; dizine eklenmesine gerek yok.
+      disallow: ["/proje-detayi", "/kurum-basvurusu", "/girisim-basvurusu"],
     },
     sitemap: `${SITE_URL}/sitemap.xml`,
     host: SITE_URL,

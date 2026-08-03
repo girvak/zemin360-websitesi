@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import HomeHero from "../components/HomeHero";
+import { GIRISIM_APPLICATION_URL, KURUM_APPLICATION_URL } from "../lib/links";
 import SectionIntro from "../components/ui/SectionIntro";
 import AccentPanel from "../components/ui/AccentPanel";
 import BenefitColumns from "../components/ui/BenefitColumns";
@@ -46,8 +47,8 @@ const kurumBenefits = [
 
 const girisimBenefits = [
   "Kurumsal şirketlere doğrudan erişim imkanı.",
-  "Somut pilot proje (PoC) geliştirme ve kurumsal referans fırsatı.",
-  "B2B ölçeklenme yolculuğunda yapısal ve mentorluk destekli ilerleme.",
+  "Somut pilot proje (POC) geliştirme ve kurumsal referans fırsatı.",
+  "B2B ölçeklenme yolculuğunda yapısal ve mentörlük destekli ilerleme.",
 ];
 
 export default function Home() {
@@ -144,12 +145,14 @@ export default function Home() {
                 İstanbul merkezli veya İstanbul&apos;da operasyonel etkisi bulunan, yenilikçi çözümlere ve
                 girişimlerle somut iş birlikleri geliştirmeye açık yapılar.
               </p>
-              <Link
-                href="/kurum-basvurusu"
+              <a
+                href={KURUM_APPLICATION_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-sm font-bold uppercase tracking-wider text-zemin-orange hover:text-zemin-purple transition-colors"
               >
                 Kurum başvurusu →
-              </Link>
+              </a>
             </AccentPanel>
 
             <AccentPanel>
@@ -158,14 +161,16 @@ export default function Home() {
               </div>
               <p className="text-gray-600 leading-relaxed mb-8">
                 Teknoloji tabanlı ürün veya hizmeti olan, MVP aşamasını tamamlamış ve kurumsal şirketlerle
-                PoC çalışmasına hazır, tercihen B2B odaklı girişimler.
+                POC çalışmasına hazır, tercihen B2B odaklı girişimler.
               </p>
-              <Link
-                href="/girisim-basvurusu"
+              <a
+                href={GIRISIM_APPLICATION_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-sm font-bold uppercase tracking-wider text-zemin-turquoise hover:text-zemin-purple transition-colors"
               >
                 Girişim başvurusu →
-              </Link>
+              </a>
             </AccentPanel>
           </div>
         </div>

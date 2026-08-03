@@ -1,4 +1,3 @@
-import Link from "next/link";
 import type { EcosystemEntry } from "../../data/ecosystem";
 import AccentPanel from "./AccentPanel";
 
@@ -30,16 +29,18 @@ export default function DirectoryList({
 
   if (items.length === 0) {
     return (
-      <AccentPanel accent={accent} className="text-center">
+      <AccentPanel className="text-center">
         <p className="text-gray-600 mb-6 leading-relaxed">
           Katılımcılar yakında açıklanacaktır. Siz de ekosisteme dahil olmak istiyorsanız başvurun.
         </p>
-        <Link
+        <a
           href={emptyHref}
+          target="_blank"
+          rel="noopener noreferrer"
           className={`inline-block text-sm font-bold uppercase tracking-wider ${accentText} hover:text-zemin-purple transition-colors`}
         >
           {emptyLabel} →
-        </Link>
+        </a>
       </AccentPanel>
     );
   }

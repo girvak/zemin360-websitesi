@@ -12,8 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/hackathon`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
     { url: `${SITE_URL}/program`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${SITE_URL}/kurumlar-girisimler`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${SITE_URL}/kurum-basvurusu`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
-    { url: `${SITE_URL}/girisim-basvurusu`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
+    // Başvuru sayfaları Airtable formlarına yönlendirdiği için site haritasına dahil edilmez.
     { url: `${SITE_URL}/iletisim`, lastModified: now, changeFrequency: "yearly", priority: 0.5 },
   ];
 }
