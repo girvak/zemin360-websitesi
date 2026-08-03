@@ -4,6 +4,9 @@ services:
       context: .
       dockerfile: Dockerfile
     image: zemin360:latest
+    # Sunucuda 80 ve 8080 dolu olabilir; host portu HOST_PORT ile değiştirilir:
+    #   HOST_PORT=8081 docker compose up -d --build
+    # Sunucudaki nginx bu porta ters vekil (reverse proxy) yapar.
     ports:
-      - "8080:8080"
+      - "${HOST_PORT:-8081}:8080"
     restart: unless-stopped
