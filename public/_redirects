@@ -1,6 +1,6 @@
-# Cloudflare Pages sunucu tarafı yönlendirmeleri. Statik dışa aktarımda Next
+# Cloudflare sunucu tarafı yönlendirmeleri. Statik dışa aktarımda Next
 # yönlendirme yapamadığı için ilgili sayfalar istemci tarafında yönlendiriyor;
-# Pages'te bu kurallar önce devreye girer, sayfalar yalnızca yedek kalır.
+# Cloudflare'de bu kurallar önce devreye girer, sayfalar yalnızca yedek kalır.
 # Airtable adresleri src/lib/links.ts ile aynı tutulmalı.
 
 /proje-detayi       /program 301

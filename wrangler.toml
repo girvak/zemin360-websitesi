@@ -1,4 +1,11 @@
-# Cloudflare Pages — `npm run deploy` veya `npx wrangler pages deploy` bu dosyayı okur.
+# Cloudflare Workers (statik varlıklar) — `npx wrangler deploy` bu dosyayı okur.
+# Worker kodu yok; out/ doğrudan servis edilir. public/_headers ve
+# public/_redirects derlemede out/'a kopyalanır ve burada da geçerlidir.
 name = "zemin360"
-pages_build_output_dir = "out"
 compatibility_date = "2026-10-01"
+
+[assets]
+directory = "./out"
+# /hackathon → hackathon.html; bulunamayan adresler 404.html ile 404 döner.
+html_handling = "auto-trailing-slash"
+not_found_handling = "404-page"

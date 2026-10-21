@@ -1,6 +1,6 @@
-# Cloudflare Pages yanıt başlıkları — docker/nginx.conf'taki başlıkların karşılığı.
-# Pages, /hackathon → hackathon.html eşlemesini ve 404.html'i kendiliğinden yapar;
-# nginx'teki try_files / error_page kurallarına burada gerek yok.
+# Cloudflare yanıt başlıkları — docker/nginx.conf'taki başlıkların karşılığı.
+# /hackathon → hackathon.html eşlemesi ve 404.html wrangler.toml'daki [assets]
+# ayarlarıyla yapılır; nginx'teki try_files / error_page kurallarına gerek yok.
 
 /*
   X-Content-Type-Options: nosniff
@@ -20,6 +20,3 @@
 /manifest.webmanifest
   Content-Type: application/manifest+json
 
-# *.pages.dev önizleme adresleri arama motorlarında zemin360.com ile yarışmasın.
-https://:project.pages.dev/*
-  X-Robots-Tag: noindex
